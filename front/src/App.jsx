@@ -4,8 +4,18 @@ import Formulario from "./Formulario";
 import Tabela from "./Tabela";
 
 function App() {
+
+  // Objeto produto
+  const produto = {
+    codigo: 0,
+    nome: '',
+    marca: '',
+  }
+
+
   const [btnCadastrar, setBtnCadastrar] = useState(true);
   const [produtos, setProdutos] = useState([]);
+  const [objProduto, setObjProduto] = useState(produto);
 
   //use effect
   useEffect(() => {
@@ -14,9 +24,15 @@ function App() {
     .then(retorno_convertido => setProdutos(retorno_convertido))
   }, []);
 
+  //Obtendo dados do formulario
+  const aoDigitar = (e) => {
+    setObjProduto({...objProduto, [e.target.name]: e.target.value})
+  }
+
   return (
     <>
-      <Formulario botao={btnCadastrar}/>
+    <p>{JSON.stringify(objProduto)}</p>
+      <Formulario botao={btnCadastrar} eventoTeclado={aoDigitar}/>
       <Tabela vetor={produtos}/>
     </>
   );

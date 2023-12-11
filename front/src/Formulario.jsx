@@ -1,8 +1,8 @@
-const Formulario = ({ botao }) => {
+const Formulario = ({ botao, eventoTeclado }) => {
   return (
     <form>
-      <input type="text" placeholder="Nome" />
-      <input type="text" placeholder="Marca" />
+      <input type="text" name='nome' onChange={eventoTeclado} placeholder="Nome" />
+      <input type="text" name='marca' onChange={eventoTeclado} placeholder="Marca" />
 
       {botao ? (
         <input type="button" value="Cadastrar" className="btn btn-primary" />
